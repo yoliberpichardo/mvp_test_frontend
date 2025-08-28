@@ -1,23 +1,20 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { CanActivateFn } from '@angular/router';
+import { inject } from '@angular/core';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 import { UserRole } from '../models/user.model';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class RoleGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+export const roleGuard: CanActivateFn = (route) => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
-    const expectedRoles = route.data['roles'] as UserRole[];
-    const user = this.authService.currentUserValue;
+  const expectedRoles = route.data['roles'] as UserRole[];
+  const user = authService.currentUserValue;
 
-    if (user && expectedRoles.includes(user.role)) {
-      return true;
-    }
-
-    this.router.navigate(['/products']);
-    return false;
+  if (user && expectedRoles.includes(user.role)) {
+    return true;
   }
-}
+
+  router.navigate(['/products']);
+  return false;
+};

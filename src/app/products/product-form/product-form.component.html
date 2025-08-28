@@ -1,58 +1,48 @@
 <div class="product-form-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>{{ isEdit ? 'Editar' : 'Crear' }} Producto</mat-card-title>
-    </mat-card-header>
+  <mat-card class="product-form-card">
+    <mat-card-title>
+      {{ isEdit ? 'Editar Producto' : 'Crear Producto' }}
+    </mat-card-title>
+    <mat-divider></mat-divider>
 
-    <mat-card-content>
-      <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Nombre</mat-label>
-          <input matInput formControlName="name" required>
-          <mat-error *ngIf="productForm.get('name')?.invalid">
-            Nombre es requerido
-          </mat-error>
-        </mat-form-field>
+    <form [formGroup]="productForm" class="product-form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" required />
+      </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Categoría</mat-label>
-          <input matInput formControlName="category" required>
-          <mat-error *ngIf="productForm.get('category')?.invalid">
-            Categoría es requerida
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Categoría</mat-label>
+        <input matInput formControlName="category" required />
+      </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Precio</mat-label>
-          <input matInput type="number" formControlName="price" min="0" step="0.01" required>
-          <mat-error *ngIf="productForm.get('price')?.invalid">
-            Precio debe ser mayor o igual a 0
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Precio</mat-label>
+        <input matInput type="number" formControlName="price" required min="0" />
+      </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Stock</mat-label>
-          <input matInput type="number" formControlName="stock" min="0" required>
-          <mat-error *ngIf="productForm.get('stock')?.invalid">
-            Stock debe ser mayor o igual a 0
-          </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Stock</mat-label>
+        <input matInput type="number" formControlName="stock" required min="0" />
+      </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Descripción</mat-label>
-          <textarea matInput formControlName="description" rows="4"></textarea>
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
 
-        <div class="button-group">
-          <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid || isLoading">
-            <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
-            <span *ngIf="!isLoading">Guardar</span>
-          </button>
-          <button mat-raised-button type="button" routerLink="/products" [disabled]="isLoading">
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </mat-card-content>
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="isLoading">
+          {{ isEdit ? 'Actualizar' : 'Crear' }}
+        </button>
+        <button mat-button type="button" (click)="router.navigate(['/products'])">
+          Cancelar
+        </button>
+      </div>
+
+      <div *ngIf="isLoading" class="loading-spinner">
+        <mat-spinner diameter="30"></mat-spinner>
+      </div>
+    </form>
   </mat-card>
 </div>

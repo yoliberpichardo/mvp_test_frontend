@@ -1,0 +1,35 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.user-info span {
+  white-space: nowrap;
+}
+
+mat-toolbar {
+  padding: 0 20px;
+}
+
+button[mat-button] {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+button[mat-button].active {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+mat-icon {
+  vertical-align: middle;
+}

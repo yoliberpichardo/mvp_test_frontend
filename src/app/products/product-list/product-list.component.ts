@@ -3,15 +3,26 @@ import { Router } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { AuthService } from '../../auth/auth.service';
 import { ProductsService } from '../../inteceptors/products.service';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatDivider } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss'],
-  imports: [MatProgressSpinnerModule, MatDivider, MatIconModule],
+  styleUrls: ['./product-list.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatIconModule,
+    MatTableModule,
+  ],
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
@@ -33,13 +44,18 @@ export class ProductListComponent implements OnInit {
     this.loadProducts();
   }
 
+  createProduct() {
+    this.router.navigate(['/products/new']);
+  }
+
   loadProducts(): void {
+    this.isLoading = true;
     this.productsService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
         this.isLoading = false;
       },
-      error: (error) => {
+      error: () => {
         this.productsService.showError('Error al cargar productos');
         this.isLoading = false;
       },
@@ -53,7 +69,7 @@ export class ProductListComponent implements OnInit {
           this.productsService.showSuccess('Producto eliminado correctamente');
           this.loadProducts();
         },
-        error: (error) => {
+        error: () => {
           this.productsService.showError('Error al eliminar producto');
         },
       });

@@ -24,8 +24,7 @@
           </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" class="full-width"
-          [disabled]="!loginForm.valid || isLoading">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid || isLoading">
           <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
           <span *ngIf="!isLoading">Iniciar Sesión</span>
         </button>

@@ -8,7 +8,6 @@ body {
 }
 
 .main-content {
-  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -27,4 +26,14 @@ body {
 
 .mb-20 {
   margin-bottom: 20px;
+}
+
+.snackbar-success {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+.snackbar-error {
+  background-color: #f44336 !important;
+  color: white !important;
 }
