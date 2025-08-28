@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <span>Sistema de Productos</span>
+
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/products" routerLinkActive="active">
+    <mat-icon>list</mat-icon> Productos
+  </button>
+
+  <div *ngIf="authService.currentUserValue" class="user-info">
+    <span>Bienvenido, {{ authService.currentUserValue.email }}</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar Sesión</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
