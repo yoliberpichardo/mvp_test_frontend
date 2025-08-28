@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../../models/product.model';
+import { Product } from '../../interfaces/product.interface';
 import { ProductsService } from '../../inteceptors/products.service';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';

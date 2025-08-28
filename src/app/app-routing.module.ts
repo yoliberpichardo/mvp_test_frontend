@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductFormComponent } from './products/product-form/product-form.component';
-import { UserRole } from './models/user.model';
+import { UserRole } from './interfaces/user.interface';
 import { authGuard } from './auth/auth.guard';
 import { roleGuard } from './auth/role.guard';
 
